@@ -1,4 +1,4 @@
-CheckoutController.class_eval do
+Spree::CheckoutController.class_eval do
   before_filter :redirect_to_paypal_express_form_if_needed, :only => [:update]
 
   def paypal_checkout
