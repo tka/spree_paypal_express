@@ -93,7 +93,7 @@ Spree::CheckoutController.class_eval do
       @order.save
 
       if payment_method.preferred_review
-        render 'shared/paypal_express_confirm'
+        render 'spree/shared/paypal_express_confirm'
       else
         paypal_finish
       end
