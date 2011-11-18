@@ -121,7 +121,7 @@ Spree::CheckoutController.class_eval do
       ppx_auth_response = gateway.authorize((@order.total*100).to_i, opts)
     end
 
-    paypal_account = PaypalAccount.find_by_payer_id(params[:PayerID])
+    paypal_account = Spree::PaypalAccount.find_by_payer_id(params[:PayerID])
 
     payment = @order.payments.create(
       :amount => ppx_auth_response.params["gross_amount"].to_f,
