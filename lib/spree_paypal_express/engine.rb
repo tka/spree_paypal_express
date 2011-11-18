@@ -1,3 +1,4 @@
+require "active_merchant/billing/gateways/paypal/paypal_express_response"
 module SpreePaypalExpress
   class Engine < Rails::Engine
     engine_name 'spree_paypal_express'
