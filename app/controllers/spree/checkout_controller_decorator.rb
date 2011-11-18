@@ -36,7 +36,7 @@ Spree::CheckoutController.class_eval do
     else
       @ppx_response = @gateway.setup_authorization(opts[:money], opts)
     end
-
+    
     unless @ppx_response.success?
       gateway_error(@ppx_response)
       redirect_to edit_order_checkout_url(@order, :state => "payment")
@@ -183,11 +183,11 @@ Spree::CheckoutController.class_eval do
     return unless params[:order][:payments_attributes]
     if params[:order][:coupon_code]
       @order.update_attributes(object_params)
-      @order.process_coupon_code
+      @order.update!
     end
     load_order
     payment_method = Spree::PaymentMethod.find(params[:order][:payments_attributes].first[:payment_method_id])
-
+    
     if payment_method.kind_of?(Spree::BillingIntegration::PaypalExpress) || payment_method.kind_of?(Spree::BillingIntegration::PaypalExpressUk)
       redirect_to paypal_payment_order_checkout_url(@order, :payment_method_id => payment_method)
     end
