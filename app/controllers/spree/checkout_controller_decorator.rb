@@ -60,7 +60,7 @@ Spree::CheckoutController.class_eval do
     if @ppx_details.success?
       # now save the updated order info
 
-      PaypalAccount.create(:email => @ppx_details.params["payer"],
+      Spree::PaypalAccount.create(:email => @ppx_details.params["payer"],
                            :payer_id => @ppx_details.params["payer_id"],
                            :payer_country => @ppx_details.params["payer_country"],
                            :payer_status => @ppx_details.params["payer_status"])
