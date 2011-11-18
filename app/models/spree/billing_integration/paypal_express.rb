@@ -6,8 +6,9 @@ class Spree::BillingIntegration::PaypalExpress < Spree::BillingIntegration
   preference :no_shipping, :boolean, :default => false
   preference :currency, :string, :default => 'USD'
 
-  validates :preferred_password, :presence => true
-  validates :preferred_signature, :presence => true
+  validates :preferred_login,     :presence => true, :on => :update
+  validates :preferred_password,  :presence => true, :on => :update
+  validates :preferred_signature, :presence => true, :on => :update
   def provider_class
     ActiveMerchant::Billing::PaypalExpressGateway
   end
