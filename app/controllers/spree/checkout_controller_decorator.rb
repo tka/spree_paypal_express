@@ -194,7 +194,7 @@ Spree::CheckoutController.class_eval do
   end
 
   def fixed_opts
-    if Spree::Config[:paypal_express_local_confirm].nil?
+    if !Spree::Config.has_preference? :paypal_express_local_confirm
       user_action = "continue"
     else
       user_action = Spree::Config[:paypal_express_local_confirm] == "t" ? "continue" : "commit"
